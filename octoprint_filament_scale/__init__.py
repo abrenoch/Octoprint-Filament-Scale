@@ -15,7 +15,7 @@ class Filament_scalePlugin(octoprint.plugin.SettingsPlugin,
 						   octoprint.plugin.StartupPlugin):
 
 
-	def __init__(self)
+	def __init__(self):
 	        self.PD_SCK = 18
 	        self.DOUT = 19
         	self.byte_format = 'MSB'

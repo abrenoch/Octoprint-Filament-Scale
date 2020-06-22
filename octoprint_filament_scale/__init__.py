@@ -33,10 +33,10 @@ class Filament_scalePlugin(octoprint.plugin.SettingsPlugin,
 			spool_weight=200,
 			clockpin=21,
 			datapin=20,
-			lastknownweight=0
-			pd_sck = 18
-			dout = 19
-			byte_format = 'MSB'
+			lastknownweight=0,
+			pd_sck = 18,
+			dout = 19,
+			byte_format = 'MSB',
 			bit_format = 'MSB'
 			
 			# put your plugin's default settings here

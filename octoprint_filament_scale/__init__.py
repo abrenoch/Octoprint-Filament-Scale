@@ -15,6 +15,10 @@ class Filament_scalePlugin(octoprint.plugin.SettingsPlugin,
 						   octoprint.plugin.StartupPlugin):
 
 
+	def __init__(self)
+	        self.PD_SCK = 18
+	        self.DOUT = 19
+	
 	def get_template_configs(self):
 		return [
 			dict(type="settings", custom_bindings=True)
@@ -28,6 +32,8 @@ class Filament_scalePlugin(octoprint.plugin.SettingsPlugin,
 			clockpin=21,
 			datapin=20,
 			lastknownweight=0
+			pd_sck = 18
+			dout = 19
 			
 			# put your plugin's default settings here
 		)
@@ -45,7 +51,7 @@ class Filament_scalePlugin(octoprint.plugin.SettingsPlugin,
 
 	
 	def on_startup(self, host, port):
-		self.hx = HX711(20, 21)
+		self.hx = HX711(self.PD_SCK, self.DOUT)
 		self.hx.set_reading_format("LSB", "MSB") 
 		self.hx.reset()
 		self.hx.power_up()
@@ -69,12 +75,12 @@ class Filament_scalePlugin(octoprint.plugin.SettingsPlugin,
 
 				# version check: github repository
 				type="github_release",
-				user="dieki-n",
+				user="tsayles",
 				repo="OctoPrint-Filament-scale",
 				current=self._plugin_version,
 
 				# update method: pip
-				pip="https://github.com/dieki-n/OctoPrint-Filament-scale/archive/{target_version}.zip"
+				pip="https://github.com/tsayles/OctoPrint-Filament-scale/archive/{target_version}.zip"
 			)
 		)
 

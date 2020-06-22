@@ -18,6 +18,8 @@ class Filament_scalePlugin(octoprint.plugin.SettingsPlugin,
 	def __init__(self)
 	        self.PD_SCK = 18
 	        self.DOUT = 19
+        	self.byte_format = 'MSB'
+        	self.bit_format = 'MSB'
 	
 	def get_template_configs(self):
 		return [
@@ -34,6 +36,8 @@ class Filament_scalePlugin(octoprint.plugin.SettingsPlugin,
 			lastknownweight=0
 			pd_sck = 18
 			dout = 19
+			byte_format = 'MSB'
+			bit_format = 'MSB'
 			
 			# put your plugin's default settings here
 		)
@@ -52,7 +56,7 @@ class Filament_scalePlugin(octoprint.plugin.SettingsPlugin,
 	
 	def on_startup(self, host, port):
 		self.hx = HX711(self.PD_SCK, self.DOUT)
-		self.hx.set_reading_format("LSB", "MSB") 
+		self.hx.set_reading_format(self.byte_format, self.bit_format) 
 		self.hx.reset()
 		self.hx.power_up()
 		self.t = octoprint.util.RepeatedTimer(3.0, self.check_weight)
